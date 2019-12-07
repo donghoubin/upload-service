@@ -1,0 +1,22 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: upload-service
+  datasource:
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/business?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+  jpa:
+    show-sql: true
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1001/eureka
+    leaseRenewalIntervalInSeconds: 3 #\u670D\u52A1\u53D1\u9001\u5FC3\u8DF3\u65F6\u95F4\u9ED8\u8BA430\u79D2 \u6539\u62103\u79D2\u3002
+
