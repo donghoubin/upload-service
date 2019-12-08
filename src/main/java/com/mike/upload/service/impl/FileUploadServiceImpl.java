@@ -2,6 +2,7 @@ package com.mike.upload.service.impl;
 
 import com.mike.company.entity.Company;
 import com.mike.upload.Feign.CompanyService;
+import com.mike.upload.controller.FileUploadController;
 import com.mike.upload.dao.FileUploadRepository;
 import com.mike.upload.entity.StockPrice;
 import com.mike.upload.model.UploadResponseInfo;
@@ -12,6 +13,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,6 +34,8 @@ import java.util.List;
  */
 @Service
 public class FileUploadServiceImpl implements FileUploadService {
+
+    private static final Logger log = LoggerFactory.getLogger(FileUploadServiceImpl.class);
 
     @Autowired
     private FileUploadRepository fileUploadRepository;

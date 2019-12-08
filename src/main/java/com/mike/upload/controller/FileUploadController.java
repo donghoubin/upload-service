@@ -2,13 +2,14 @@ package com.mike.upload.controller;
 
 import com.mike.upload.model.UploadResponseInfo;
 import com.mike.upload.service.FileUploadService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +26,8 @@ import java.io.*;
 @Controller
 public class FileUploadController {
 
+    private static final Logger log = LoggerFactory.getLogger(FileUploadController.class);
+
     @Autowired
     private FileUploadService fileUploadService;
 
@@ -34,10 +37,11 @@ public class FileUploadController {
                                                                HttpServletRequest request) {
         UploadResponseInfo uploadResponseInfo = new UploadResponseInfo();
         try {
+            log.info("Upload file successfully");
             uploadResponseInfo = fileUploadService.uploadFile(request, file);
             uploadResponseInfo.setResponseState("success");
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Failed to upload file!" + e.getMessage());
             uploadResponseInfo.setResponseState("fail");
         }
         return new ResponseEntity<>(uploadResponseInfo, HttpStatus.OK);
@@ -61,12 +65,12 @@ public class FileUploadController {
 
             //  return ResponseEntity.status(404).body(null);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            log.error("Failed to download file!" + e.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Failed to download file!" + e.getMessage());
         }
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getName() + "\"")
                 .body(buffer);
     }
-    }
+}
