@@ -1,9 +1,10 @@
 package com.mike.upload.service.impl;
 
-import com.mike.company.entity.Company;
+
 import com.mike.upload.Feign.CompanyService;
 import com.mike.upload.controller.FileUploadController;
 import com.mike.upload.dao.FileUploadRepository;
+import com.mike.upload.entity.Company;
 import com.mike.upload.entity.StockPrice;
 import com.mike.upload.model.UploadResponseInfo;
 import com.mike.upload.service.FileUploadService;

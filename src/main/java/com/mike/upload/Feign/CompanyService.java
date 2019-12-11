@@ -1,6 +1,7 @@
 package com.mike.upload.Feign;
 
-import com.mike.company.entity.Company;
+
+import com.mike.upload.entity.Company;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
