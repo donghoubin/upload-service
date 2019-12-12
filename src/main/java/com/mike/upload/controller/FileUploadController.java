@@ -49,7 +49,7 @@ public class FileUploadController {
 
     @GetMapping("/filedownload")
     public ResponseEntity<byte[]> getFile() {
-        File file = new File("C:\\Users\\HouBinDong\\Desktop\\finaltask\\sample_stock_data_true.xlsx");
+        File file = new File("C:\\Users\\chinaibmjava80\\Desktop\\sample_stock_data_true.xlsx");
         byte[] buffer = null;
         try {
             FileInputStream fis = new FileInputStream(file);
